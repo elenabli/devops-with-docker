@@ -1,0 +1,15 @@
+services:
+  app:
+    image: elenablinova/express-app:latest
+    restart: always
+    ports:
+      - "8080:8080"
+
+  watchtower:
+    image: containrrr/watchtower
+    restart: always
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      - WATCHTOWER_POLL_INTERVAL=30
+    container_name: watchtower
